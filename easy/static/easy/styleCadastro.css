@@ -1,0 +1,117 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fundo claro para contrastar com o formulário */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal */
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 80px; /* Espaço para não cobrir com o header fixo */
+}
+
+/* Título do formulário */
+h1 {
+    text-align: center;
+    color: #9e0000; /* Vermelho escuro */
+    margin-bottom: 20px;
+}
+
+/* Estilos para mensagens */
+.message {
+    background-color: #ffcccc; /* Vermelho claro para erros */
+    color: #9e0000;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.message.success {
+    background-color: #c6f7c1; /* Verde claro para mensagens de sucesso */
+    color: #3d8c3d;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos dos campos do formulário */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border 0.3s;
+}
+
+input:focus {
+    border-color: #9e0000; /* Vermelho escuro */
+    background-color: #fff;
+    outline: none;
+}
+
+/* Botão de submit */
+button {
+    padding: 12px;
+    background-color: #9e0000; /* Vermelho escuro */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #7a0000; /* Cor um pouco mais escura ao passar o mouse */
+}
+
+/* Estilos para campos de erro */
+input:invalid {
+    border-color: #ff4d4d; /* Vermelho claro para campos inválidos */
+}
+
+/* Estilos para a área de mensagens de erro */
+.messages {
+    margin-bottom: 20px;
+}
+
+/* Adicionar espaçamento ao redor do formulário */
+form {
+    padding: 20px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin-top: 20px; /* Menos espaço no topo em telas pequenas */
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome da Máquina</title>
+    <link rel="stylesheet" href="{% static 'easy/descri' %}">
+    {% load static %}
+</head>
+<body>
+    <header>
+        <a href="logindocente.html">
+            <img class="imagemLogo" src="{% static 'image/logo.png' %}" alt="Logo">
+        </a>
+        <div class="clickable-images">
+            <a href="galeria_doc.html" class="image-link">
+                <img src="../image/galeria.png" alt="Galeria" class="clickable-image">
+                <span class="tooltip">Sobre as Máquinas</span>
+            </a>
+            <a href="agenda.html" class="image-link">
+                <img src="../image/agendamento (1).png" alt="Agendamento" class="clickable-image">
+                <span class="tooltip">Agendamento</span>
+            </a>
+            <a href="calendario.html" class="image-link">
+                <img src="../image/calendario (1).png" alt="calendario" class="clickable-image">
+                <span class="tooltip">Calendário</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <div class="tooltip-container">
+                <div class="button-content">
+                    <span class="text">Bem vindo Usuário</span>
+                </div>
+                <div class="tooltip-content">
+                    <div class="social-icons">
+                        <a href="capa.html" class="social-icon admin">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <a href="galeria_doc.html" class="butao">❮</a>
+    <main>
+        <div class="content">
+            <div class="machine-card">
+                <div class="machine-image">
+                    <img src="../image/ImagemTorno.jpg" alt="Imagem da Máquina">
+                </div>
+                <div class="machine-description">
+                    <h1>Nome da máquina</h1>
+                    <p>Descrição: A máquina é um equipamento robusto e eficiente, projetado para executar tarefas específicas com precisão. Com estrutura metálica resistente e sistema de acionamento variado (elétrico, hidráulico ou pneumático), ela combina tecnologia avançada com controles eletrônicos intuitivos. Sensores e feedback garantem operação segura e dentro dos parâmetros estabelecidos. Equipadas com proteções e dispositivos de emergência, essas máquinas asseguram um ambiente de trabalho seguro e confiável.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

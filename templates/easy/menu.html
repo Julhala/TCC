@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Industrial</title>
+    <link rel="stylesheet" href="{% static 'easy/header.css' %}">
+    <link rel="stylesheet" href="{% static 'easy/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'easy/footer.css' %}">
+
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo-img">
+    </div>
+    <nav class="nav">
+        <ul>
+            <li><a href="{% url 'agenda' %}">Agenda</a></li>
+            <li><a href="{% url 'calendario' %}">Calendário</a></li>
+            <li><a href="{% url 'galeria_doc' %}">Manual de Máquinas</a></li>
+        </ul>
+    </nav>
+    <div class="dropdown">
+        <button class="dropbtn">Bem-vindo, Usuário</button>
+        <div class="dropdown-content">
+            <a href="{% url 'capa' %}">logout</a>
+        </div>
+    </div>
+</header>
+
+
+ <div class="carousel">
+     <div class="carousel-images">
+         <img src="{% static 'image/image1.jpg' %}" alt="Imagem 1">
+         <img src="{% static 'image/image2.jpg' %}" alt="Imagem 2">
+         <img src="{% static 'image/image3.jpg' %}" alt="Imagem 3">
+     </div>
+ </div>
+
+  <main class="main-content">
+    <section class="maintenance-info">
+        <h2>Manutenção de Máquinas Industriais: Serviços Essenciais e Benefícios</h2>
+        <p>Em um ambiente industrial, a manutenção de máquinas é fundamental para garantir a operação contínua, evitar paradas inesperadas e aumentar a produtividade. Conheça os principais serviços e os tipos de manutenção utilizados para prolongar a vida útil dos equipamentos.</p>
+
+        <h3>1. Manutenção Corretiva</h3>
+        <p>A manutenção corretiva é realizada quando uma máquina apresenta falhas ou defeitos inesperados. Este tipo de manutenção, embora necessário, pode ser mais caro a longo prazo, pois costuma interromper operações, impactando diretamente a produção. É aplicada em situações onde a falha já ocorreu e a intervenção precisa ser imediata.</p>
+
+        <h3>2. Manutenção Preventiva</h3>
+        <p>A manutenção preventiva é programada regularmente para minimizar o risco de falhas. Esse processo inclui inspeções periódicas, testes de desempenho e substituição de peças desgastadas, garantindo que as máquinas operem em condições ideais. A manutenção preventiva ajuda a diminuir o tempo de inatividade e os custos com consertos emergenciais.</p>
+
+        <h3>3. Manutenção Preditiva</h3>
+        <p>Utilizando sensores e tecnologias avançadas, a manutenção preditiva monitora continuamente o desempenho das máquinas, identificando alterações e falhas potenciais antes que elas ocorram. Através da análise de dados em tempo real, é possível programar manutenções no momento exato, evitando interrupções desnecessárias.</p>
+
+        <h3>4. Calibração e Ajustes de Precisão</h3>
+        <p>Calibrações regulares e ajustes de precisão são importantes para garantir que os equipamentos estejam funcionando conforme os parâmetros especificados. Isso é essencial em setores que exigem alta precisão, como o setor automotivo e farmacêutico, onde pequenos desvios podem impactar a qualidade final do produto.</p>
+
+        <h3>5. Limpeza Técnica e Lubrificação</h3>
+        <p>Esses serviços incluem a remoção de resíduos, poeira e lubrificação das peças móveis das máquinas. A limpeza técnica ajuda a prevenir acúmulos que poderiam afetar o desempenho e a eficiência energética, enquanto a lubrificação reduz o desgaste e o atrito entre os componentes, prolongando sua vida útil.</p>
+
+        <h3>Benefícios de um Programa de Manutenção Bem Estruturado</h3>
+        <p>Um programa de manutenção bem estruturado pode trazer inúmeros benefícios para as operações industriais:</p>
+        <ul>
+            <li><strong>Aumento da eficiência e produtividade:</strong> Máquinas em boas condições operam de forma mais eficiente, reduzindo o consumo de energia e aumentando a produtividade.</li>
+            <li><strong>Redução de custos:</strong> Intervenções regulares evitam a necessidade de reparos dispendiosos e paradas prolongadas.</li>
+            <li><strong>Segurança:</strong> Equipamentos bem mantidos reduzem o risco de acidentes de trabalho e garantem um ambiente de trabalho mais seguro para todos.</li>
+            <li><strong>Vida útil prolongada dos equipamentos:</strong> Um plano de manutenção adequado ajuda a maximizar a durabilidade dos equipamentos, protegendo o investimento feito.</li>
+        </ul>
+    </section>
+</main>
+
+
+<footer class="custom-footer">
+    <div class="footer-container">
+        <div class="contact-info">
+            <h3>Entre em Contato</h3>
+            <p>Email: <a class="link" href="mailto:admin.office@easymac.com">admin.office@easymac.com</a></p>
+            <p>Telefone/WhatsApp: <a class="link" href="tel:+551140023456">+55 (11) 4002-3456</a></p>
+            <div class="address">
+                <span>Edifício Sede</span> |
+                <span>Av. Inovação e Tecnologia, 123</span> |
+                <span>Bloco A, Sala 456</span>
+                </div>
+            <p>Bairro da Inovação, São Paulo - SP, 01234-567, Brasil</p>
+        </div>
+        <div class="footer-links">
+            <h3>Links Rápidos</h3>
+            <ul>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+                <li><a href="#">Termos de Uso</a></li>
+            </ul>
+        </div>
+        <div class="social-media">
+            <h3>Redes Sociais</h3>
+            <a href="#" class="imagemsocial"><img src="{% static 'image/facebook.png' %}" alt="Facebook"></a>
+            <a href="#" class="imagemsocial"><img src="{% static 'image/linkedin.png' %}" alt="LinkedIn"></a>
+            <a href="#" class="imagemsocial"><img src="{% static 'image/instagram.png' %}" alt="Instagram"></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Galeria de Imagens. Todos os direitos reservados.</p>
+        <button class="back-to-top" onclick="scrollToTop()" id="backToTopBtn">Voltar ao Topo</button>
+    </div>
+</footer>
+</body>
+</html>

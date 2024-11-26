@@ -1,0 +1,248 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px; /* Ajuste conforme necessário */
+    margin: 70px auto; /* Centraliza horizontalmente */
+    padding: 20px; /* Espaço interno */
+}
+
+table {
+    width: 100%; /* Largura total */
+    border-collapse: collapse; /* Remove espaço entre bordas */
+    background-color: white; /* Cor de fundo da tabela */
+    border-radius: 8px; /* Bordas arredondadas */
+    overflow: hidden; /* Para aplicar bordas arredondadas */
+}
+
+thead {
+    background-color: #f0f0f0; /* Cor de fundo do cabeçalho da tabela */
+}
+
+th, td {
+    padding: 10px; /* Espaçamento interno */
+    text-align: left; /* Alinhamento à esquerda */
+    border: 1px solid #dddddd; /* Borda dos elementos */
+}
+
+th {
+    font-weight: bold; /* Texto em negrito para o cabeçalho */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Cor ao passar o mouse nas linhas da tabela */
+}
+
+/* ==================================== */
+/*               BOTÕES                */
+/* ==================================== */
+button {
+    background-color: #a72828; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    padding: 5px 8px; /* Ajuste do espaçamento interno */
+    cursor: pointer; /* Mão ao passar o mouse */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+button:hover {
+    background-color: #8a2020; /* Cor ao passar o mouse */
+}
+
+button:focus {
+    outline: none; /* Remove o contorno ao focar */
+}
+
+/* ==================================== */
+/*          ESTILO DO CABEÇALHO        */
+/* ==================================== */
+
+.home {
+    width: 50px; /* Define o tamanho do ícone do logo */
+    height: auto;
+    margin-right: 10px; /* Espaço entre o ícone e o texto do logo */
+}
+
+.logo-text {
+    font-size: 1.5em; /* Tamanho da fonte do logo */
+    font-weight: bold; /* Deixa o texto em negrito */
+}
+
+
+.imagemLogo {
+    width: 150px; /* Aumente ou diminua conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+.user-menu {
+    position: absolute; /* Centraliza horizontalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centralização */
+}
+
+/* Estilo do menu de usuário */
+.tooltip-container {
+    position: relative; /* Para posicionar o tooltip em relação ao link */
+}
+
+.tooltip-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0; /* Alinha a tooltip à direita do botão */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mostra a tooltip ao passar o mouse */
+.tooltip-container:hover .tooltip-content {
+    display: block;
+}
+
+
+/* ==================================== */
+/*               LINK E IMAGEM         */
+/* ==================================== */
+header a {
+    margin: 0 5px; /* Reduzindo o espaço entre os links */
+}
+
+header img {
+    width: 50px; /* Ajuste o tamanho da imagem, se necessário */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+/* ==================================== */
+/*        ESTILO DOS BOTÕES SOCIAIS    */
+/* ==================================== */
+.text {
+    text-decoration: none;
+    color: #ffffff; /* Cor do texto dos botões sociais */
+    font-size: 1rem; /* Tamanho da fonte */
+    font-weight: bold; /* Deixa o texto mais negrito */
+    padding: 0.5rem 1rem; /* Espaçamento ao redor do texto */
+    border-radius: 0.5rem; /* Cantos arredondados */
+    background-color: #800000; /* Cor de fundo vermelha */
+    text-align: center; /* Alinha o texto no centro */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer; /* Cursor em forma de mão */
+    margin-left: -170%;
+}
+
+/* Estilo do botão ao passar o mouse */
+.text:hover {
+    background-color: #ffffff; /* Cor de fundo quando o mouse passa em cima */
+    color: #800000; /* Cor do texto quando o mouse passa em cima */
+}
+
+/* ==================================== */
+/*            ESTILO DA BUSCA          */
+/* ==================================== */
+.search {
+    display: flex; /* Usa flexbox para layout */
+    align-items: center; /* Alinha verticalmente */
+    justify-content: flex-end; /* Mantém a pesquisa à direita */
+}
+
+/* ==================================== */
+/*            ESTILO DA IMAGEM LINK    */
+/* ==================================== */
+.image-link {
+    position: relative; /* Para posicionar o tooltip em relação ao link */
+}
+
+.tooltip {
+    display: none; /* Esconde a tooltip por padrão */
+    position: absolute;
+    top: 100%; /* Aparece abaixo do ícone */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza a tooltip */
+    background-color: #fff; /* Fundo branco */
+    color: #333; /* Cor do texto */
+    padding: 12px; /* Espaçamento interno */
+    border: 1px solid #9A1915; /* Borda vermelha */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+    z-index: 10; /* Fica acima de outros elementos */
+    white-space: nowrap; /* Impede quebra de linha */
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Mostra a tooltip ao passar o mouse */
+.icon:hover .tooltip {
+    display: block; /* Mostra a tooltip */
+    opacity: 1; /* Torna visível */
+    transform: translate(-50%, 10px); /* Leve movimento para baixo */
+}
+
+.image-link:hover .tooltip,
+.image-link:focus .tooltip {
+    display: block; /* Mostra a tooltip ao passar o mouse */
+    opacity: 1; /* Garante que a opacidade esteja completa */
+}
+
+.social-icon {
+    padding: 5px 10px; /* Ajusta o espaçamento interno */
+    font-size: 12px; /* Tamanho da fonte menor */
+    border-radius: 4px; /* Arredonda os cantos */
+    text-decoration: none; /* Remove o sublinhado */
+    background-color: #800000; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+/* ==================================== */
+/*           ESTILO DA NAVBAR          */
+/* ==================================== */
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.navbar li {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.navbar a {
+    color: #fff; /* Cor dos links */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 1em; /* Tamanho da fonte dos links */
+    transition: color 0.3s; /* Transição suave para mudança de cor */
+}
+
+.navbar{
+    width: 30%;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+.navbar a:hover {
+    color: #f9c74f; /* Cor ao passar o mouse (amarelo) */
+}
+
+.logo-container {
+    display: flex; /* Alinha o logo e o texto ao lado */
+    justify-content: center; /* Centraliza a logo horizontalmente */
+    align-items: center; /* Alinha verticalmente o logo e o texto */
+    flex: 1; /* Permite que a logo-container ocupe o espaço disponível */
+}
+
+.imagemLogo {
+    height: 100%; /* Mantém a proporção da imagem */
+    margin-left: 10px;
+}

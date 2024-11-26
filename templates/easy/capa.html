@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Easymac</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="{% static 'easy/header.css' %}">
+    <link rel='stylesheet' type='text/css' href="{% static 'easy/capa.css' %}">
+
+
+</head>
+<body style="background: url({% static 'image/fundo_vermelho.png' %}); background-size: 100%">
+
+<header class="header">
+    <a href="{% url 'menu' %}">
+        <div class="logo">
+            <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo-img">
+        </div>
+    </a>
+
+    <div class="dropdown">
+        <button class="dropbtn">Bem-vindo, Usuário</button>
+        <div class="dropdown-content">
+            <a href="{% url 'loginADMIN' %}">Admin</a>
+            <a href="{% url 'loginfunc' %}">Funcionário</a>
+        </div>
+    </div>
+</header>
+
+    <main class="container">
+        <img class="imagemLogo" src="{% static 'image/logo.png' %}" alt="">
+    </main>
+
+</body>
+</html>

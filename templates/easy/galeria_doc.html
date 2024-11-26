@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'easy/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'easy/galerias.css' %}">
+    <title>Manual</title>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo-img">
+    </div>
+    <nav class="nav">
+        <ul>
+            <li><a href="{% url 'agenda' %}">Agenda</a></li>
+            <li><a href="{% url 'calendario' %}">Calendário</a></li>
+            <li><a href="{% url 'cadastrar_maquina' %}">Máquinas</a></li>
+            <li><a href="{% url 'cadastrar_usuario' %}">Funcionarios</a></li>
+        </ul>
+    </nav>
+    <div class="dropdown">
+        <button class="dropbtn">Bem-vindo, Usuário</button>
+        <div class="dropdown-content">
+            <a href="{% url 'capa' %}">logout</a>
+        </div>
+    </div>
+</header>
+<div class="left-panel">
+    <h3>Máquinas</h3>
+    <div class="search">
+        <input type="text" class="search__input" placeholder="Pesquisar..." id="search-input">
+    </div>
+    <!-- Lista de máquinas -->
+    {% for maquinas in maquina %}
+    <div class="team-member" data-id="{{ maquina.id }}">
+        {{ maquina.nome }}
+        <button class="status-button" id="status-{{ maquina.id }}">Ativo</button>
+    </div>
+    {% endfor %}
+</div>
+<div class="right-panel">
+    <div id="details-container" class="details" style="display: none;">
+        <img id="machine-image" src="" alt="Imagem da Máquina">
+        <p id="machine-type"></p>
+        <p id="machine-description"></p>
+    </div>
+</div>
+
+<script>
+    // Dados das máquinas
+    const machineData = {
+        {% for maquinas in maquina %}
+        {{ maquina.id }}: {
+            image: "{{ maquina.imagem.url }}",  // A URL da imagem está diretamente acessível assim
+            type: "{{ maquina.tipomaq }}",
+            description: "{{ maquina.descricao }}"
+        },
+        {% endfor %}
+    };
+
+    // Adiciona evento de clique em cada item da lista
+    document.querySelectorAll('.team-member').forEach(member => {
+        member.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            const details = machineData[id];
+            if (details) {
+                document.getElementById('machine-image').src = details.image;
+                document.getElementById('machine-type').innerText = `Tipo: ${details.type}`;
+                document.getElementById('machine-description').innerText = `Descrição: ${details.description}`;
+                document.getElementById('details-container').style.display = 'block';
+            }
+        });
+    });
+
+    // Filtra a lista com base na pesquisa
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', function () {
+        const searchValue = searchInput.value.toLowerCase();
+        document.querySelectorAll('.team-member').forEach(member => {
+            const machineName = member.textContent.toLowerCase();
+            if (machineName.includes(searchValue)) {
+                member.style.display = 'block';
+            } else {
+                member.style.display = 'none';
+            }
+        });
+    });
+
+    // Alternar entre Ativo/Inativo
+    document.querySelectorAll('.status-button').forEach(button => {
+        button.addEventListener('click', function () {
+            if (this.innerText === "Ativo") {
+                this.innerText = "Inativo";
+                this.style.backgroundColor = "red";
+                this.style.color = "white";
+            } else {
+                this.innerText = "Ativo";
+                this.style.backgroundColor = "green";
+                this.style.color = "white";
+            }
+        });
+    });
+</script>
+</body>
+</html>

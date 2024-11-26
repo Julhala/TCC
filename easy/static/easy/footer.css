@@ -1,0 +1,164 @@
+/* Estilo Geral do Footer */
+.custom-footer {
+    background-color: rgb(34, 34, 34);
+    color: #fff;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+/* Estilo para a Seção de Informações de Contato */
+.contact-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #f39c12;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.contact-info .link {
+    color: #f39c12;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info .link:hover {
+    color: #ecf0f1;
+}
+
+/* Endereço */
+.contact-info .address {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os Links Rápidos */
+.footer-links {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-links h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #f39c12;
+}
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin: 10px 0;
+}
+
+.footer-links ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-links ul li a:hover {
+    color: #f39c12;
+}
+
+/* Estilo para as Redes Sociais */
+.social-media {
+    flex: 1;
+    min-width: 250px;
+}
+
+.social-media h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #f39c12;
+}
+
+.social-media .imagemsocial {
+    margin-right: 15px;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-media .imagemsocial:hover {
+    transform: scale(1.1);
+}
+
+.social-media img {
+    width: 40px;
+    height: 40px;
+    transition: opacity 0.3s ease;
+}
+
+.social-media img:hover {
+    opacity: 0.8;
+}
+
+/* Estilo da Parte Inferior do Footer */
+.footer-bottom {
+    text-align: center;
+    background-color: #191919;
+    padding: 20px;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom .back-to-top {
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-bottom .back-to-top:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-links,
+    .social-media {
+        text-align: center;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    .footer-bottom {
+        padding: 20px;
+    }
+}

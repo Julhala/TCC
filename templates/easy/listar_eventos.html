@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Eventos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'easy/style.css' %}">
+</head>
+<body>
+    <h1>Lista de Eventos</h1>
+    <a href="{% url 'adicionar_evento' %}">Adicionar Evento</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evento in eventos %}
+            <tr>
+                <td>{{ evento.nome }}</td>
+                <td>{{ evento.data }}</td>
+                <td>{{ evento.hora }}</td>
+                <td>
+                    <a href="{% url 'editar_evento' evento.pk %}">Editar</a>
+                    <a href="{% url 'excluir_evento' evento.pk %}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

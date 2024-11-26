@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Manutenção</title>
+    <link rel="stylesheet" href="{% static 'easy/header.css' %}">
+    <link rel="stylesheet" href="{% static 'easy/agenda.css' %}">
+</head>
+<body>
+
+    <!-- Cabeçalho com saudação ao usuário logado -->
+    <header class="header">
+        <a href="{% url 'menu' %}">
+           <div class="logo">
+                <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo-img">
+           </div>
+        </a>
+        <nav class="nav">
+            <ul>
+                <li><a href="{% url 'calendario' %}">Calendário</a></li>
+                <li><a href="{% url 'galeria_doc' %}">Manual de Máquinas</a></li>
+            </ul>
+        </nav>
+        <div class="dropdown">
+            <button class="dropbtn">Bem-vindo, {{ usuario.nome }} {{ usuario.sobrenome }}</button>
+            <div class="dropdown-content">
+                <a href="{% url 'capa' %}">logout</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Formulário de Agendamento -->
+    <main>
+        <section class="form-section">
+            <h2>Preencha os dados para agendar uma manutenção</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Campo para o nome da máquina -->
+                <label for="id_nome">Nome da Máquina:</label>
+                <input type="text" id="id_nome" name="nome" required>
+
+                <!-- Campo para o tipo de manutenção -->
+                <label for="id_tipomanu">Tipo de Manutenção:</label>
+                <input type="text" id="id_tipomanu" name="tipomanu" required>
+
+
+                <!-- Campo para a data -->
+                <label for="id_dia">Data:</label>
+                <input type="date" id="id_dia" name="dia" required>
+
+                <!-- Campo para a hora -->
+                <label for="id_hora">Hora:</label>
+                <input type="time" id="id_hora" name="hora" required>
+
+                <!-- Campo para o arquivo do responsável (quem) -->
+                <label for="id_quem">Responsável:</label>
+                <input type="text" id="id_quem" name="quem">
+
+                <!-- Botão para enviar o formulário -->
+                <button type="submit" class="btn-agendar">Agendar Manutenção</button>
+                <button type="button" class="btn-imprimir" onclick="imprimirAgendamento()">Imprimir Agendamento</button>
+
+            </form>
+
+            <!-- Exibe mensagens de sucesso ou erro -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2024 Empresa de Máquinas. Todos os direitos reservados.</p>
+        <p>Contato: contato@empresa.com.br | (00) 1234-5678</p>
+        <div class="social-links">
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+<script>
+    function imprimirAgendamento() {
+        // Obtendo os valores dos campos do formulário
+        const nome = document.getElementById('id_nome').value;
+        const tipomanu = document.getElementById('id_tipomanu').value;
+        const dia = document.getElementById('id_dia').value;
+        const hora = document.getElementById('id_hora').value;
+        const quem = document.getElementById('id_quem').value || 'Não informado';
+
+        // Criando uma nova janela para impressão
+        const novaJanela = window.open('', '', 'width=600,height=400');
+
+        // Adicionando conteúdo à nova janela
+        novaJanela.document.write(`
+            <html>
+            <head>
+                <title>Imprimir Agendamento</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+                    h1 { color: #c8102e; }
+                    .atencao { color: red; font-weight: bold; margin-top: 20px; font-size: 24px; }
+                    .desligado { font-size: 40px; color: #c8102e; margin: 30px 0; font-weight: bold; }
+                    .letra { font-size: 50px; }
+                </style>
+            </head>
+            <body>
+                <h1 class="desligado">Desligado para Manutenção</h1>
+                <p><strong class="letra">Nome da Máquina:</strong> ${nome}</p>
+                <p><strong class="letra">Tipo de Manutenção:</strong> ${tipomanu}</p>
+                <p><strong class="letra">Data:</strong> ${dia}</p>
+                <p><strong class="letra">Hora:</strong> ${hora}</p>
+                <p><strong class="letra">Responsável:</strong> ${quem}</p>
+                <p class="atencao">ATENÇÃO: Verifique se todos os detalhes estão corretos antes de confirmar o agendamento!</p>
+            </body>
+            </html>
+        `);
+
+        // Fechando o documento e chamando a função de impressão
+        novaJanela.document.close();
+        novaJanela.print();
+    }
+</script>
+
+
+</body>
+</html>

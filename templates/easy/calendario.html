@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Manutenção</title>
+    <link rel="stylesheet" href="{% static 'easy/header.css' %}">
+    <link rel="stylesheet" href="{% static 'easy/calendario.css' %}">
+    <link rel="stylesheet" href="{% static 'easy/footer.css' %}">
+</head>
+<body>
+    <header class="header">
+        <a href="{% url 'menu' %}">
+            <div class="logo">
+                <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo-img">
+            </div>
+        </a>
+        <nav class="nav">
+            <ul>
+                <li><a href="{% url 'agenda' %}">Agenda</a></li>
+                <li><a href="{% url 'galeria_doc' %}">Manual de Máquinas</a></li>
+            </ul>
+        </nav>
+        <div class="dropdown">
+            <button class="dropbtn">Bem-vindo, Usuário</button>
+            <div class="dropdown-content">
+                <a href="{% url 'capa' %}">logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section id="calendar-container">
+            <div id="calendar">
+                <div id="calendar-header">
+                    <button onclick="prevMonth()">&#8249;</button>
+                    <h2 id="month-year"></h2>
+                    <button onclick="nextMonth()">&#8250;</button>
+                </div>
+                <div id="weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div id="days"></div>
+            </div>
+        </section>
+
+        <!-- Barra de pesquisa -->
+            <section id="event-list">
+                <h2>Manutenções Agendadas</h2>
+                <div class="event-list-header">
+                    <div id="search-container">
+                        <input type="date" id="search-date" />
+                        <button onclick="searchEventByDate()">Pesquisar</button>
+                    </div>
+                </div>
+                <ul id="event-list-content"></ul>
+            </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="custom-footer">
+        <div class="footer-container">
+            <div class="contact-info">
+                <h3>Entre em Contato</h3>
+                <p>Email: <a class="link" href="mailto:admin.office@easymac.com">admin.office@easymac.com</a></p>
+                <p>Telefone/WhatsApp: <a class="link" href="tel:+551140023456">+55 (11) 4002-3456</a></p>
+                <div class="address">
+                    <span>Edifício Sede</span> |
+                    <span>Av. Inovação e Tecnologia, 123</span> |
+                    <span>Bloco A, Sala 456</span>
+                </div>
+                <p>Bairro da Inovação, São Paulo - SP, 01234-567, Brasil</p>
+            </div>
+            <div class="footer-links">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="social-media">
+                <h3>Redes Sociais</h3>
+                <a href="#" class="imagemsocial"><img src="{% static 'image/facebook.png' %}" alt="Facebook"></a>
+                <a href="#" class="imagemsocial"><img src="{% static 'image/linkedin.png' %}" alt="LinkedIn"></a>
+                <a href="#" class="imagemsocial"><img src="{% static 'image/instagram.png' %}" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Galeria de Imagens. Todos os direitos reservados.</p>
+            <button class="back-to-top" onclick="scrollToTop()" id="backToTopBtn">Voltar ao Topo</button>
+        </div>
+    </footer>
+
+    <script>
+        const monthYear = document.getElementById("month-year");
+        const daysContainer = document.getElementById("days");
+        const eventListContent = document.getElementById("event-list-content");
+        const searchDateInput = document.getElementById("search-date");
+
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let allAgendamentos = [];
+
+        async function fetchAgendamento(month, year) {
+            try {
+                const response = await fetch(`/obter_eventos/?month=${month + 1}&year=${year}`);
+                const agendamento = await response.json();
+                allAgendamentos = agendamento; // Salva todos os eventos
+                renderCalendar(month, year, agendamento);
+                renderEventList(agendamento);
+            } catch (error) {
+                console.error("Erro ao buscar agendamento:", error);
+            }
+        }
+
+        function renderCalendar(month, year, agendamento = []) {
+            monthYear.innerText = new Date(year, month).toLocaleString('pt-br', { month: 'long', year: 'numeric' });
+            daysContainer.innerHTML = '';
+
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                daysContainer.innerHTML += `<div></div>`;
+            }
+
+            for (let day = 1; day <= lastDateOfMonth; day++) {
+                const agendamentosDoDia = agendamento.filter(ag => {
+                    const dataAgendada = new Date(ag.dia);
+                    return (
+                        dataAgendada.getUTCFullYear() === year &&
+                        dataAgendada.getUTCMonth() === month &&
+                        dataAgendada.getUTCDate() === day
+                    );
+                });
+
+                const dayContent =
+                    `<div class="${agendamentosDoDia.length > 0 ? 'day-agendado' : ''}">
+                        ${day}
+                        ${agendamentosDoDia.map(ag => `<div class="event-info">${ag.nome} (${ag.tipomanu})</div>`).join('')}
+                    </div>`;
+                daysContainer.innerHTML += dayContent;
+            }
+        }
+
+        function renderEventList(agendamento) {
+            eventListContent.innerHTML = '';
+
+            agendamento.forEach(ag => {
+                const dataAgendada = new Date(ag.dia);
+                const dataFormatada = new Date(dataAgendada.getFullYear(), dataAgendada.getMonth(), dataAgendada.getDate());
+
+                const date = dataFormatada.toLocaleDateString('pt-BR');
+                const eventItem = document.createElement('li');
+                eventItem.innerHTML = `${date} - ${ag.nome} (${ag.tipomanu})`;
+
+                eventItem.addEventListener('click', () => {
+                    highlightDateInCalendar(dataFormatada.getDate());
+                });
+
+                eventListContent.appendChild(eventItem);
+            });
+        }
+
+        function highlightDateInCalendar(day) {
+            const days = document.querySelectorAll("#days > div");
+            days.forEach(div => {
+                div.style.border = "1px solid #444";
+                if (div.textContent.trim() === day.toString()) {
+                    div.style.border = "2px solid #e60000";
+                    div.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+            });
+        }
+
+        function searchEventByDate() {
+            const searchDate = searchDateInput.value;
+            if (searchDate) {
+                const filteredAgendamentos = allAgendamentos.filter(ag => {
+                    const agDate = new Date(ag.dia);
+                    const searchDateObj = new Date(searchDate);
+                    return agDate.toLocaleDateString('pt-BR') === searchDateObj.toLocaleDateString('pt-BR');
+                });
+
+                renderEventList(filteredAgendamentos); // Atualiza a lista de eventos com os filtrados
+            } else {
+                renderEventList(allAgendamentos); // Caso o campo de pesquisa esteja vazio, mostra todos os eventos
+            }
+        }
+
+        function prevMonth() {
+            currentMonth = (currentMonth - 1 + 12) % 12;
+            if (currentMonth === 11) currentYear--;
+            fetchAgendamento(currentMonth, currentYear);
+        }
+
+        function nextMonth() {
+            currentMonth = (currentMonth + 1) % 12;
+            if (currentMonth === 0) currentYear++;
+            fetchAgendamento(currentMonth, currentYear);
+        }
+
+        fetchAgendamento(currentMonth, currentYear);
+    </script>
+</body>
+</html>

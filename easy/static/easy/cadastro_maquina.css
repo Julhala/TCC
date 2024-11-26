@@ -1,0 +1,168 @@
+/* Reset básico de margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 30px;
+}
+
+/* Container principal do formulário */
+main {
+    background-color: #e0e0e0; /* Cor de fundo cinza para o formulário */
+    padding: 15px; /* Diminui o padding para compactar mais */
+    border-radius: 5px; /* Pontas arredondadas menores */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Formulário mais compacto */
+    max-height: 80vh; /* Limita a altura do formulário a 80% da altura da tela */
+    margin-top: 4%;
+    overflow: hidden; /* Remove a barra de rolagem */
+}
+
+/* Título do formulário */
+h1 {
+    text-align: center;
+    color: #e63946; /* Vermelho */
+    font-size: 18px; /* Reduzido */
+    margin-bottom: 15px;
+}
+
+/* Estilo do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* Menor espaçamento entre os elementos */
+}
+
+/* Rótulos */
+label {
+    font-size: 12px; /* Fonte menor */
+    font-weight: 600;
+    color: #333;
+}
+
+/* Campos de entrada (inputs e textarea) */
+input[type="text"],
+textarea,
+input[type="file"] {
+    padding: 8px; /* Reduzido */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Pontas arredondadas menores */
+    font-size: 13px; /* Fonte reduzida */
+    color: #333;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+input[type="file"]:focus {
+    border-color: #e63946; /* Cor de destaque ao focar */
+    outline: none;
+}
+
+/* Estilo do textarea */
+textarea {
+    resize: vertical;
+    min-height: 60px; /* Menor altura */
+}
+
+/* Contêiner dos checkboxes */
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Menor espaço entre checkboxes */
+}
+
+/* Estilo dos checkboxes */
+.checkbox-container input[type="checkbox"] {
+    margin-right: 8px; /* Menor espaço */
+}
+
+.checkbox-container label {
+    font-size: 12px; /* Fonte menor */
+    color: #555;
+}
+
+/* Botão de envio */
+button[type="submit"] {
+    background-color: #e63946; /* Vermelho */
+    color: white;
+    padding: 10px; /* Reduzido */
+    font-size: 14px; /* Tamanho da fonte reduzido */
+    border: none;
+    border-radius: 6px; /* Pontas arredondadas menores */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+button[type="submit"]:hover {
+    background-color: #d63235; /* Tom de vermelho mais escuro */
+}
+
+/* Botão de voltar */
+#voltar {
+    background-color: #dcdcdc;
+    color: #333;
+    padding: 10px; /* Menor padding */
+    font-size: 12px; /* Fonte menor */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+    transition: background-color 0.3s ease;
+}
+
+#voltar:hover {
+    background-color: #b8b8b8;
+}
+
+/* Estilos para o botão de arquivo */
+input[type="file"] {
+    font-size: 12px; /* Fonte menor */
+    padding: 6px; /* Menor padding */
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Pontas arredondadas menores */
+}
+
+/* Estilo para o formulário ao se tornar responsivo */
+@media (max-width: 480px) {
+    main {
+        padding: 15px;
+        max-width: 100%;
+        max-height: 85vh; /* Limita a altura em telas menores */
+        overflow: hidden; /* Remove a barra de rolagem */
+    }
+
+    h1 {
+        font-size: 16px; /* Fonte ainda menor em dispositivos pequenos */
+        margin-bottom: 12px;
+    }
+
+    button[type="submit"],
+    #voltar {
+        font-size: 12px; /* Fonte reduzida em telas menores */
+        padding: 10px;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+        font-size: 12px; /* Fonte reduzida */
+    }
+}

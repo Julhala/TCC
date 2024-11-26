@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Máquinas</title>
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'easy/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'easy/cadastro_maquina.css' %}">
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="header">
+        <a href="{% url 'menu' %}">
+            <img alt="Logo" class="logo">
+        </a>
+        <nav class="nav">
+            <ul>
+                <li><a href="{% url 'agenda' %}">Agenda</a></li>
+                <li><a href="{% url 'calendario' %}">Calendário</a></li>
+                <li><a href="{% url 'galeria_doc' %}">Manual de Máquinas</a></li>
+            </ul>
+        </nav>
+        <div class="dropdown">
+            <button class="dropbtn">Bem-vindo, Usuário</button>
+            <div class="dropdown-content">
+                <a href="{% url 'capa' %}">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Formulário de Cadastro de Máquinas -->
+    <main>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Nome da Máquina -->
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required><br>
+
+            <!-- Tipo de Máquina -->
+            <label for="tipomaq">Tipo de Máquina:</label>
+            <input type="text" name="tipomaq" id="tipomaq" required><br>
+
+            <!-- Tipo de Manutenção -->
+            <label for="tipomanu">Tipo de Manutenção:</label>
+            <div class="checkbox-container">
+                <label>
+                    <input type="checkbox" name="tipomanu" value="preventiva">
+                    Manutenção Preventiva
+                </label>
+                <label>
+                    <input type="checkbox" name="tipomanu" value="corretiva">
+                    Manutenção Corretiva
+                </label>
+                <label>
+                    <input type="checkbox" name="tipomanu" value="preditiva">
+                    Manutenção Preditiva
+                </label>
+                <label>
+                    <input type="checkbox" name="tipomanu" value="detectiva">
+                    Manutenção Detectiva
+                </label>
+            </div>
+
+            <!-- Descrição -->
+            <label for="descricao">Descrição:</label>
+            <textarea name="descricao" id="descricao" required></textarea><br>
+
+            <!-- Imagem -->
+            <label for="imagem">Imagem:</label>
+            <input type="file" name="imagem" id="imagem" accept="image/*" required><br>
+
+            <!-- Botão de Envio -->
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <!-- Botão Voltar -->
+        <a href="{% url 'agenda' %}">
+            <button id="voltar" type="button">← Voltar</button>
+        </a>
+    </main>
+
+</body>
+
+</html>
